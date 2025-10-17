@@ -1,12 +1,7 @@
-# Module1FirstClass
-
-
-
----
 
 # 💻 DeviceManager
 
-A simple Python application that models endpoint devices in a university IT environment. This project demonstrates core object-oriented programming principles and serves as a foundation for future automation, inventory tracking, or compliance auditing.
+A Python application that models and manages endpoint devices in an IT environment. This project demonstrates object-oriented programming principles including inheritance, interface abstraction, and reflection. It builds on the base `Device` class by introducing a more advanced `ManagedDevice` class with additional functionality for compliance tracking and technician assignment.
 
 ---
 
@@ -14,27 +9,41 @@ A simple Python application that models endpoint devices in a university IT envi
 
 ```
 DeviceManager/
-├── device.py       # Base class definition for Device
-├── main.py         # Container app that instantiates and interacts with Device
-└── README.md       # Project overview and instructions
+├── device.py             # Base class definition for Device
+├── device_interface.py   # Abstract interface enforcing print_properties()
+├── managed_device.py     # Extended class with added functionality
+├── main.py               # Container app that instantiates and interacts with ManagedDevice
+└── README.md             # Project overview and instructions
 ```
 
 ---
 
-## 🧠 About the `Device` Class
+## 🧠 Class Overview
 
-The `Device` class represents a managed endpoint (like a laptop or desktop) in an enterprise or academic setting. It includes:
+### 🔹 `Device` (Base Class)
+Represents a basic endpoint device with the following properties:
+- `name`
+- `ip_address`
+- `os`
+- `location`
+- `status`
 
-### 🔑 Properties:
-- `name`: Device name or hostname  
-- `ip_address`: Network IP address  
-- `os`: Operating system  
-- `location`: Physical or logical location  
-- `status`: Operational status (e.g., Active, Maintenance)
+Includes methods:
+- `update_status(new_status)`
+- `display_info()`
 
-### ⚙️ Methods:
-- `update_status(new_status)`: Updates the device’s status  
-- `display_info()`: Prints all device details to the console
+### 🔹 `ManagedDevice` (Extended Class)
+Inherits from `Device` and implements `DeviceInterface`. Adds:
+- `compliance_status`
+- `technician`
+
+Includes methods:
+- `assign_technician(name)`
+- `print_properties()` — uses reflection to print all attributes dynamically
+
+### 🔹 `DeviceInterface`
+Defines a required method:
+- `print_properties()` — ensures consistent property output across device types
 
 ---
 
@@ -55,11 +64,9 @@ The `Device` class represents a managed endpoint (like a laptop or desktop) in a
 
 ## 🎯 Course Alignment
 
-
-- Defining a custom object (`Device`) with five properties and two methods  
-- Using a container app to instantiate and interact with the object  
-- Demonstrating clean code principles and modular design
-
----
+- Extending a base class using inheritance
+- Designing a simple interface to enforce structure
+- Using reflection to dynamically print object properties
+- Building toward a scalable system for device or compliance management
 
 
